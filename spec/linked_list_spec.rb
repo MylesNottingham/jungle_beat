@@ -17,6 +17,7 @@ RSpec.describe LinkedList do
 
   it "can returns the input value of append when called" do
     expect(@list.append("doop")).to eq("doop")
+    expect(@list.append("deep")).to eq("deep")
   end
 
   it "can create a node and make it the head of the linked list" do
@@ -47,5 +48,11 @@ RSpec.describe LinkedList do
   it "can return data of head node as a string" do
     @list.append(5)
     expect(@list.to_string).to eq("5")
+  end
+
+  it "can return data of all nodes as one string" do
+    @list.append("doop")
+    @list.append("deep")
+    expect(@list.to_string).to eq("doop deep")
   end
 end

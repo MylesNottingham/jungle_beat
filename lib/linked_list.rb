@@ -35,6 +35,14 @@ class LinkedList
   end
 
   def to_string
-    @head.data.to_s if @head
+    if @head
+      all_data = [@head.data]
+      last_node = @head.next_node
+      while last_node
+        all_data << last_node.data
+        last_node = last_node.next_node
+      end
+    end
+    string = all_data.join(' ').to_s
   end
 end
