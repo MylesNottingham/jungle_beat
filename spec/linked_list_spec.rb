@@ -34,4 +34,9 @@ RSpec.describe LinkedList do
     @list.append("doop")
     expect(@list.head.data).to eq("doop")
   end
+
+  it "can return data of head node as a string" do
+    @list.append(5)
+    expect(@list.to_string).to eq("5")
+  end
 end
