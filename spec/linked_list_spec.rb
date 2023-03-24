@@ -15,9 +15,23 @@ RSpec.describe LinkedList do
     expect(@list.head).to eq(nil)
   end
 
-  it "can create a node and append it to the linked list" do
-    @list.append("doop")
+  it "can returns the input value of append when called" do
+    expect(@list.append("doop")).to eq("doop")
+  end
 
+  it "can create a node and make it the head of the linked list" do
+    @list.append("doop")
+    expect(@list.head).to be_a(Node)
+  end
+
+  it "can count the number of nodes in the linked list from 0 - 1" do
+    expect(@list.count).to eq(0)
+    @list.append("doop")
+    expect(@list.count).to eq(1)
+  end
+
+  it "can read the data of the head node" do
+    @list.append("doop")
     expect(@list.head.data).to eq("doop")
   end
 end
