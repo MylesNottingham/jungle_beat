@@ -1,9 +1,8 @@
 class LinkedList
-  attr_reader :head, :to_string
+  attr_reader :head
   
   def initialize
     @head = nil
-    @to_string = @head.data if @head
   end
 
   def count
@@ -33,5 +32,9 @@ class LinkedList
       @head = Node.new(node)
     end
     node
+  end
+
+  def to_string
+    @head.data.to_s if @head
   end
 end
