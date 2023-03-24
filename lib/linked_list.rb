@@ -34,6 +34,18 @@ class LinkedList
     node
   end
 
+  def prepend(node)
+    if @head
+      next_node = @head
+      first_node = Node.new(node)
+      first_node.set_next_node(next_node)
+      @head = first_node
+    else
+      @head = Node.new(node)
+    end
+    node
+  end
+
   def to_string
     if @head
       all_data = [@head.data]
