@@ -106,4 +106,26 @@ class LinkedList
   def includes?(data)
     self.to_string.include?(data)
   end
+
+  def pop
+    if @head
+      if @head.next_node == nil
+        pop_node = @head
+        @head = nil
+      else
+        previous_node = nil
+        pop_node = @head
+        last_node = @head.next_node
+        until last_node == nil
+          previous_node = pop_node
+          pop_node = last_node
+          last_node = pop_node.next_node
+        end
+        previous_node.set_next_node(nil)
+      end
+      pop_node.data
+    else
+      raise "Nothing to Pop"
+    end
+  end
 end
