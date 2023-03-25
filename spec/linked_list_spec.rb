@@ -212,13 +212,51 @@ RSpec.describe LinkedList do
         @list.append("shu")
         @list.append("blop")
       end
-      
-      it "returns true if argument is in list" do
+
+      it "returns true if data is in list" do
         expect(@list.includes?("deep")).to eq(true)
       end
 
-      it "returns false if argument is in list" do
+      it "returns false if data is in list" do
         expect(@list.includes?("dep")).to eq(false)
+      end
+    end
+
+    describe "pop" do
+      before(:each) do
+        @list.append("deep")
+        @list.append("woo")
+        @list.append("shi")
+        @list.append("shu")
+        @list.append("blop")
+      end
+      
+      it "returns data from last node when called" do
+        expect(@list.pop).to eq("blop")
+        expect(@list.pop).to eq("shu")
+      end
+
+      it "removes last node from list" do
+        @list.pop
+        @list.pop
+
+        expect(@list.to_string).to eq("deep woo shi")
+      end
+
+      it "can remove all nodes from list" do
+        5.times do
+          @list.pop
+        end
+
+        expect(@list.head).to eq(nil)
+      end
+
+      it "raises 'Nothing to Pop' exception when called on an empty list" do
+        5.times do
+          @list.pop
+        end
+
+        expect { @list.pop }.to raise_error(RuntimeError, "Nothing to Pop")
       end
     end
   end
