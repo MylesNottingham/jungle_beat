@@ -83,4 +83,23 @@ class LinkedList
     end
     string = all_data.join(' ').to_s
   end
+
+  def find(position, number_of_elements)
+    length = self.count
+    if position + number_of_elements - 1 <= length && position >= 0 && number_of_elements > 0
+      select_data = []
+      select_node = @head
+      index = 0
+      (position + number_of_elements).times do
+        if index >= position
+          select_data << select_node.data
+        end
+        select_node = select_node.next_node
+        index += 1
+      end
+    else
+      raise "Invalid Parameters"
+    end
+    string = select_data.join(' ').to_s
+  end
 end
