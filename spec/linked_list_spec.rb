@@ -70,96 +70,138 @@ RSpec.describe LinkedList do
   end
 
   describe "Iteration 2" do
-    it "returns the input value of prepend when called" do
-      expect(@list.prepend("dop")).to eq("dop")
+    describe "prepend" do
+      it "returns the input value of prepend when called" do
+        expect(@list.prepend("dop")).to eq("dop")
+      end
+
+      it "creates a node with prepend and makes it the head of the linked list" do
+        @list.prepend("dop")
+
+        expect(@list.head).to be_a(Node)
+      end
+
+      it "prepends a node to an established list" do
+        @list.append("plop")
+        @list.append("suu")
+        @list.prepend("dop")
+
+        expect(@list.head.data).to eq("dop")
+      end
+
+      it "still returns data of all nodes as one string" do
+        @list.append("plop")
+        @list.append("suu")
+        @list.prepend("dop")
+
+        expect(@list.to_string).to eq("dop plop suu")
+      end
+
+      it "still counts" do
+        expect(@list.count).to eq(0)
+
+        @list.append("plop")
+        @list.append("suu")
+
+        expect(@list.count).to eq(2)
+
+        @list.prepend("dop")
+
+        expect(@list.count).to eq(3)
+      end
     end
 
-    it "creates a node with prepend and makes it the head of the linked list" do
-      @list.prepend("dop")
+    describe "insert" do
+      it "returns the input value of insert when called" do
+        expect(@list.insert(0, "woo")).to eq("woo")
+      end
 
-      expect(@list.head).to be_a(Node)
+      it "inserts a node at the head of an empty list" do
+        @list.insert(0, "woo")
+
+        expect(@list.head).to be_a(Node)
+      end
+
+      it "inserts a node at the head of an established list" do
+        @list.append("plop")
+        @list.append("suu")
+        @list.prepend("dop")
+        @list.insert(0, "woo")
+
+        expect(@list.to_string).to eq("woo dop plop suu")
+      end
+
+      it "inserts a node into a list at the defined index" do
+        @list.append("plop")
+        @list.append("suu")
+        @list.prepend("dop")
+        @list.insert(1, "woo")
+
+        expect(@list.to_string).to eq("dop woo plop suu")
+      end
+
+      it "inserts a node at the end of a list" do
+        @list.append("plop")
+        @list.append("suu")
+        @list.prepend("dop")
+        @list.insert(3, "woo")
+
+        expect(@list.to_string).to eq("dop plop suu woo")
+      end
+
+      it "raises 'Invalid Index' exception with index too high" do
+        @list.append("plop")
+        @list.append("suu")
+        @list.prepend("dop")
+
+        expect { @list.insert(5, "woo") }.to raise_error(RuntimeError, "Invalid Index")
+      end
+
+      it "raises 'Invalid Index' exception with index too low" do
+        @list.append("plop")
+        @list.append("suu")
+        @list.prepend("dop")
+
+        expect { @list.insert(-1, "woo") }.to raise_error(RuntimeError, "Invalid Index")
+      end
     end
 
-    it "prepends a node to an established list" do
-      @list.append("plop")
-      @list.append("suu")
-      @list.prepend("dop")
+    describe "find" do
+      before(:each) do
+        @list.append("deep")
+        @list.append("woo")
+        @list.append("shi")
+        @list.append("shu")
+        @list.append("blop")
+      end
 
-      expect(@list.head.data).to eq("dop")
-    end
+      it "has five nodes in an established list" do
+        expect(@list.to_string).to eq("deep woo shi shu blop")
+      end
 
-    it "still returns data of all nodes as one string" do
-      @list.append("plop")
-      @list.append("suu")
-      @list.prepend("dop")
+      it "finds a single node" do
+        expect(@list.find(2, 1)).to eq("shi")
+      end
 
-      expect(@list.to_string).to eq("dop plop suu")
-    end
+      it "finds multiple nodes" do
+        expect(@list.find(1, 3)).to eq("woo shi shu")
+      end
 
-    it "still counts" do
-      expect(@list.count).to eq(0)
+      it "raises 'Invalid Parameters' exception with position too high" do
+        expect { @list.find(7, 1) }.to raise_error(RuntimeError, "Invalid Parameters")
+      end
 
-      @list.append("plop")
-      @list.append("suu")
+      it "raises 'Invalid Parameters' exception with position too low" do
+        expect { @list.find(-1, 1) }.to raise_error(RuntimeError, "Invalid Parameters")
+      end
 
-      expect(@list.count).to eq(2)
+      it "raises 'Invalid Parameters' exception with number_of_elements too high" do
+        expect { @list.find(0, 7) }.to raise_error(RuntimeError, "Invalid Parameters")
+      end
 
-      @list.prepend("dop")
-
-      expect(@list.count).to eq(3)
-    end
-
-    it "returns the input value of insert when called" do
-      expect(@list.insert(0, "woo")).to eq("woo")
-    end
-
-    it "inserts a node at the head of an empty list" do
-      @list.insert(0, "woo")
-
-      expect(@list.head).to be_a(Node)
-    end
-
-    it "inserts a node at the head of an established list" do
-      @list.append("plop")
-      @list.append("suu")
-      @list.prepend("dop")
-      @list.insert(0, "woo")
-
-      expect(@list.to_string).to eq("woo dop plop suu")
-    end
-
-    it "inserts a node into a list at the defined index" do
-      @list.append("plop")
-      @list.append("suu")
-      @list.prepend("dop")
-      @list.insert(1, "woo")
-
-      expect(@list.to_string).to eq("dop woo plop suu")
-    end
-
-    it "inserts a node at the end of a list" do
-      @list.append("plop")
-      @list.append("suu")
-      @list.prepend("dop")
-      @list.insert(3, "woo")
-
-      expect(@list.to_string).to eq("dop plop suu woo")
-    end
-
-    it "raises 'Invalid Index' exception with index too high" do
-      @list.append("plop")
-      @list.append("suu")
-      @list.prepend("dop")
-
-      expect { @list.insert(5, "woo") }.to raise_error(RuntimeError, "Invalid Index")
-    end
-
-    it "raises 'Invalid Index' exception with index too low" do
-      @list.append("plop")
-      @list.append("suu")
-      @list.prepend("dop")
-
-      expect { @list.insert(-1, "woo") }.to raise_error(RuntimeError, "Invalid Index")
+      it "raises 'Invalid Parameters' exception with number_of_elements too low" do
+        expect { @list.find(0, 0) }.to raise_error(RuntimeError, "Invalid Parameters")
+      end
     end
   end
 end
