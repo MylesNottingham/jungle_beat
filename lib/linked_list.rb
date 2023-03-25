@@ -102,4 +102,8 @@ class LinkedList
     end
     string = select_data.join(' ').to_s
   end
+
+  def includes?(data)
+    self.to_string.include?(data)
+  end
 end
