@@ -203,5 +203,23 @@ RSpec.describe LinkedList do
         expect { @list.find(0, 0) }.to raise_error(RuntimeError, "Invalid Parameters")
       end
     end
+
+    describe "includes?" do
+      before(:each) do
+        @list.append("deep")
+        @list.append("woo")
+        @list.append("shi")
+        @list.append("shu")
+        @list.append("blop")
+      end
+      
+      it "returns true if argument is in list" do
+        expect(@list.includes?("deep")).to eq(true)
+      end
+
+      it "returns false if argument is in list" do
+        expect(@list.includes?("dep")).to eq(false)
+      end
+    end
   end
 end
