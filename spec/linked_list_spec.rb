@@ -231,7 +231,7 @@ RSpec.describe LinkedList do
         @list.append("blop")
       end
       
-      it "returns data from last node when called" do
+      it "returns data from last node in list when called" do
         expect(@list.pop).to eq("blop")
         expect(@list.pop).to eq("shu")
       end
