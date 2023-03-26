@@ -1,10 +1,11 @@
 class JungleBeat
   attr_reader :list
-  attr_accessor :rate
+  attr_accessor :rate, :voice
 
-  def initialize(beats = nil, rate = 500)
+  def initialize(beats = nil, rate = 500, voice = "Boing")
     @list = LinkedList.new
     @rate = rate
+    @voice = voice
     @direct_call = 1
     append(beats) && @direct_call = 0 unless beats.nil?
   end
@@ -42,6 +43,6 @@ class JungleBeat
   end
 
   def play
-    `say -r #{@rate} -v Boing #{@list.to_string}`
+    `say -r #{@rate} -v #{@voice} #{@list.to_string}`
   end
 end
