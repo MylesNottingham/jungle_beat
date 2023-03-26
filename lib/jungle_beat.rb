@@ -1,14 +1,16 @@
 class JungleBeat
   attr_reader :list
+  attr_accessor :rate
 
-  def initialize(beats = nil)
+  def initialize(beats = nil, rate = 500)
     @list = LinkedList.new
+    @rate = rate
     @direct_call = 1
     append(beats) && @direct_call = 0 unless beats.nil?
   end
 
   def select_beats(beats)
-    approved_beats = "tee dee deep bop boop la na doo ditt woo hoo shu".split
+    approved_beats = "tee dee deep bop boop la na doo ditt woo hoo shu dop".split
     beats.split.select do |beat|
       approved_beats.include?(beat)
     end
@@ -35,11 +37,11 @@ class JungleBeat
     @list.count
   end
 
-  def play
-    `say -r 500 -v Boing #{@list.to_string}`
-  end
-
   def all
     @list.to_string
+  end
+
+  def play
+    `say -r #{@rate} -v Boing #{@list.to_string}`
   end
 end
