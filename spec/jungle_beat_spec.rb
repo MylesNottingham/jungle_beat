@@ -5,76 +5,76 @@ require "./lib/jungle_beat"
 
 RSpec.describe JungleBeat do
   describe "Iteration 3" do
-    # before(:each) do
-    #   @jb = JungleBeat.new
-    # end
+    before(:each) do
+      @jb = JungleBeat.new
+    end
 
-    # it "exists" do
-    #   expect(@jb).to be_a(JungleBeat)
-    # end
+    it "exists" do
+      expect(@jb).to be_a(JungleBeat)
+    end
 
-    # it "begins with a list" do
-    #   expect(@jb.list).to be_a(LinkedList)
-    # end
+    it "begins with a list" do
+      expect(@jb.list).to be_a(LinkedList)
+    end
 
-    # it "begins with a list without a head" do
-    #   expect(@jb.list.head).to eq(nil)
-    # end
+    it "begins with a list without a head" do
+      expect(@jb.list.head).to eq(nil)
+    end
 
-    # it "returns argument when append method is called" do
-    #   expect(@jb.append("deep doo ditt")).to eq("deep doo ditt")
-    # end
+    it "returns argument when append method is called" do
+      expect(@jb.append("deep doo ditt")).to eq("deep doo ditt")
+    end
 
-    # it "appends them all to the list" do
-    #   @jb.append("deep doo ditt")
+    it "appends them all to the list" do
+      @jb.append("deep doo ditt")
 
-    #   expect(@jb.list.head.data).to eq("deep")
-    #   expect(@jb.list.head.next_node.data).to eq("doo")
-    #   expect(@jb.list.head.next_node.next_node.data).to eq("ditt")
-    # end
+      expect(@jb.list.head.data).to eq("deep")
+      expect(@jb.list.head.next_node.data).to eq("doo")
+      expect(@jb.list.head.next_node.next_node.data).to eq("ditt")
+    end
 
-    # it "can append some more and return the argument" do
-    #   @jb.append("deep doo ditt")
-    #   expect(@jb.append("woo hoo shu")).to eq("woo hoo shu")
-    # end
+    it "can append some more and return the argument" do
+      @jb.append("deep doo ditt")
+      expect(@jb.append("woo hoo shu")).to eq("woo hoo shu")
+    end
 
-    # it "can count nodes" do
-    #   @jb.append("deep doo ditt")
+    it "can count nodes" do
+      @jb.append("deep doo ditt")
 
-    #   expect(@jb.count).to eq(3)
+      expect(@jb.count).to eq(3)
 
-    #   @jb.append("woo hoo shu")
+      @jb.append("woo hoo shu")
 
-    #   expect(@jb.count).to eq(6)
-    # end
+      expect(@jb.count).to eq(6)
+    end
 
-    # it "can append six at once and return the argument" do
-    #   expect(@jb.append("deep doo ditt woo hoo shu")).to eq("deep doo ditt woo hoo shu")
-    # end
+    it "can append six at once and return the argument" do
+      expect(@jb.append("deep doo ditt woo hoo shu")).to eq("deep doo ditt woo hoo shu")
+    end
 
-    # it "can still count nodes" do
-    #   @jb.append("deep doo ditt woo hoo shu")
+    it "can still count nodes" do
+      @jb.append("deep doo ditt woo hoo shu")
 
-    #   expect(@jb.count).to eq(6)
-    # end
+      expect(@jb.count).to eq(6)
+    end
 
-    # it "can ask the list to count nodes too" do
-    #   @jb.append("deep doo ditt woo hoo shu")
+    it "can ask the list to count nodes too" do
+      @jb.append("deep doo ditt woo hoo shu")
 
-    #   expect(@jb.list.count).to eq(6)
-    # end
+      expect(@jb.list.count).to eq(6)
+    end
 
-    # it "can play them beats" do
-    #   @jb.append("deep doo ditt woo hoo shu")
+    it "can play them beats" do
+      @jb.append("deep doo ditt woo hoo shu")
 
-    #   expect(@jb.play).to eq("")
-    # end
+      expect(@jb.play).to eq("")
+    end
 
-    # it "can play a ton of them beats" do
-    #   25.times { @jb.append("deep doo ditt woo hoo shu") }
+    it "can play a ton of them beats" do
+      25.times { @jb.append("deep doo ditt woo hoo shu") }
 
-    #   expect(@jb.play).to eq("")
-    # end
+      expect(@jb.play).to eq("")
+    end
   end
 
   describe "Iteration 4" do
