@@ -117,13 +117,21 @@ RSpec.describe JungleBeat do
       end
 
       it "can still play them beats" do
-        @jb.play
+        expect(@jb.play).to eq("")
       end
 
       it "can play them beats slowly" do
         expect(@jb.rate = 100).to eq(100)
 
-        @jb.play
+        expect(@jb.play).to eq("")
+      end
+
+      it "can play them beats slowly in a different voice" do
+        @jb.rate = 100
+
+        expect(@jb.voice = "Daniel").to eq("Daniel")
+
+        expect(@jb.play).to eq("")
       end
     end
   end
