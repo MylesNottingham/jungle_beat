@@ -34,6 +34,7 @@ RSpec.describe JungleBeat do
     end
 
     it "can append some more and return the argument" do
+      @jb.append("deep doo ditt")
       expect(@jb.append("woo hoo shu")).to eq("woo hoo shu")
     end
 
@@ -45,6 +46,28 @@ RSpec.describe JungleBeat do
       @jb.append("woo hoo shu")
 
       expect(@jb.count).to eq(6)
+    end
+
+    it "can append six at once and return the argument" do
+      expect(@jb.append("deep doo ditt woo hoo shu")).to eq("deep doo ditt woo hoo shu")
+    end
+
+    it "can still count nodes" do
+      @jb.append("deep doo ditt woo hoo shu")
+
+      expect(@jb.count).to eq(6)
+    end
+
+    it "can ask the list to count nodes too" do
+      @jb.append("deep doo ditt woo hoo shu")
+
+      expect(@jb.list.count).to eq(6)
+    end
+
+    it "can play them beats" do
+      @jb.append("deep doo ditt woo hoo shu")
+
+      expect(@jb.play).to eq("")
     end
   end
 end
