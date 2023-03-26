@@ -69,5 +69,11 @@ RSpec.describe JungleBeat do
 
       expect(@jb.play).to eq("")
     end
+
+    it "can play a ton of them beats" do
+      25.times {@jb.append("deep doo ditt woo hoo shu")}
+
+      expect(@jb.play).to eq("")
+    end
   end
 end
