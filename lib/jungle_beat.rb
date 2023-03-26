@@ -9,10 +9,14 @@ class JungleBeat
     beats.split.each do |beat|
       @list.append(beat)
     end
-    @list.to_string
+    beats
   end
 
   def count
     @list.count
+  end
+
+  def play
+    `say -r 500 -v Boing #{@list.to_string}`
   end
 end
