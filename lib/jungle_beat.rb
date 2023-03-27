@@ -12,25 +12,19 @@ class JungleBeat
 
   def select_beats(beats)
     approved_beats = "tee dee deep bop boop la na doo ditt woo hoo shu dop".split
-    beats.split.select do |beat|
-      approved_beats.include?(beat)
-    end
+    beats.split.select { |beat| approved_beats.include?(beat) }
   end
 
   def append(beats)
     selected_beats = select_beats(beats)
-    selected_beats.each do |beat|
-      @list.append(beat)
-    end
+    selected_beats.each { |beat| @list.append(beat) }
     @direct_call += 1
     selected_beats.join(" ") if @direct_call > 1
   end
 
   def prepend(beats)
     selected_beats = select_beats(beats)
-    selected_beats.each do |beat|
-      @list.prepend(beat)
-    end
+    selected_beats.each { |beat| @list.prepend(beat) }
     selected_beats.join(" ")
   end
 
